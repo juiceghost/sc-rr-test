@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import falling_down_pic from './assets/falling_down.jpeg';
-
 
 const CardContainer = styled.div`
   display: flex;
@@ -21,15 +19,16 @@ const CardImage = styled.img`
    height: 20em;
 `;
 
-function Card() {
-
+function Card(props) {
+    //console.log(props);
     return (
         <CardContainer>
-            <CardImage src={falling_down_pic} alt="Falling Down" />
-            <h1>Falling Down 1993</h1>
-            <p>An ordinary man frustrated with the various flaws he sees in society begins to psychotically and violently lash out against them.</p>
+            <CardImage src={props.poster} alt={props.title} />
+            <h1>{props.title}</h1>
+            <p>{props.description}</p>
         </CardContainer>
     );
 }
+
 
 export default Card;
