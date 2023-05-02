@@ -7,7 +7,7 @@ const CardContainer = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  height: 30em;
+  height: 35em;
   width: 25em;
   /* background: red; */
   border: 2px solid black;
@@ -19,13 +19,17 @@ const CardImage = styled.img`
    height: 20em;
 `;
 
+const Overview = styled.p`
+  padding: 1em;  
+`;
+
 function Card(props) {
     //console.log(props);
     return (
         <CardContainer>
             <CardImage src={props.poster} alt={props.title} />
             <h1>{props.title}</h1>
-            <p>{props.description}</p>
+            <Overview>{props.overview}</Overview>
         </CardContainer>
     );
 }
