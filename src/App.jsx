@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Hero from './Hero';
+import Card from './Card';
 
 const MainContainer = styled.main`
   display: flex;
@@ -21,6 +22,12 @@ function App() {
       <h1>Krille</h1>
       <StyledPara>This is the most awesomest page ever. Trust me bro Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquam eligendi corrupti reiciendis porro asperiores necessitatibus ipsam id dignissimos ullam commodi? Optio fuga eos quidem repellat quos assumenda omnis, sequi atque?</StyledPara>
       <Hero />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+
     </MainContainer>
   )
 }
