@@ -8,7 +8,7 @@ import falling_down_pic from './assets/falling_down.jpeg';
 
 const TMDB_GET_MOVIES = "https://api.themoviedb.org/3/discover/movie?api_key=d82f364f4fa13e9d2bc3e63a48f37d0c&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&with_watch_monetization_types=flatrate&with_genres=80,18,53";
 // TMDB API KEY: d82f364f4fa13e9d2bc3e63a48f37d0c
-const POSTER_PREFIX = "https://image.tmdb.org/t/p/original"
+export const POSTER_PREFIX = "https://image.tmdb.org/t/p/original"
 
 const CardListContainer = styled.div`
     display: flex;

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,7 +11,8 @@ import {
 } from "react-router-dom";
 
 import Hero from './Hero';
-import CardList from './CardList';
+import CardList, { POSTER_PREFIX } from './CardList';
+
 
 const MainContainer = styled.main`
   display: flex;
@@ -25,16 +27,29 @@ const StyledPara = styled.p`
 `;
 
 function Movie() {
-
+  const [data, setData] = React.useState(false);
   // Object destructuring:
   let { movieId } = useParams();
+  const TMDB_GET_DETAIL = `https://api.themoviedb.org/3/movie/${movieId}?api_key=d82f364f4fa13e9d2bc3e63a48f37d0c&language=en-US`;
+  console.log(POSTER_PREFIX)
+
+  React.useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(TMDB_GET_DETAIL);
+      console.log(result)
+      setData(result.data);
+    };
+
+    fetchData();
+  }, []);
+
 
   // Same result, no destructuring:
   //let params = useParams();
   //let movieId = params.movieId;
   //console.log(params);
-
-  return <h3>Requested movie ID: {movieId}</h3>;
+  return <h1>{data.title}</h1>
+  return data ? <h1>{data.title}</h1> : <h3>Loading</h3>;
 }
 
 function Movies() {
