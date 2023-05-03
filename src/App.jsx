@@ -48,7 +48,6 @@ function Movie() {
   //let params = useParams();
   //let movieId = params.movieId;
   //console.log(params);
-  return <h1>{data.title}</h1>
   return data ? <h1>{data.title}</h1> : <h3>Loading</h3>;
 }
 
