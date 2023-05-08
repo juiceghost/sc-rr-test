@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
+import Form from './Form';
 import Card from './Card';
 import falling_down_pic from './assets/falling_down.jpeg';
 
@@ -46,6 +47,7 @@ function CardList(props) {
                 {data.results.map(movie => (
                     <Link to={`/movie/${movie.id}`} key={movie.id}>
                         <Card title={movie.title} overview={movie.overview} poster={POSTER_PREFIX + movie.poster_path} />
+                        <Form personId={movie.id} />
                     </Link>
                 ))}
             </CardListContainer>

@@ -9,6 +9,7 @@ import {
   useRouteMatch,
   useParams
 } from "react-router-dom";
+import { Rating } from 'react-simple-star-rating';
 
 import Form from './Form';
 import CardList, { POSTER_PREFIX } from './CardList';
@@ -48,7 +49,10 @@ function Movie() {
   //let params = useParams();
   //let movieId = params.movieId;
   //console.log(params);
-  return data ? <h1>{data.title}</h1> : <h3>Loading</h3>;
+  return data ? <>
+    <h1>{data.title}</h1>
+    <Rating initialValue={data.vote_average / 2} allowFraction />
+  </> : <h3>Loading</h3>;
 }
 
 function Movies() {
@@ -90,7 +94,9 @@ function App() {
         </ul>
         <Switch>
           <Route path="/movie">
+            <Form />
             <Movies />
+
           </Route>
           <Route path="/">
             <Form />
