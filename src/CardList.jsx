@@ -5,11 +5,7 @@ import { Link } from 'react-router-dom';
 
 import Form from './Form';
 import Card from './Card';
-import falling_down_pic from './assets/falling_down.jpeg';
-
-const TMDB_GET_MOVIES = "https://api.themoviedb.org/3/discover/movie?api_key=d82f364f4fa13e9d2bc3e63a48f37d0c&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&with_watch_monetization_types=flatrate&with_genres=80,18,53";
-// TMDB API KEY: d82f364f4fa13e9d2bc3e63a48f37d0c
-export const POSTER_PREFIX = "https://image.tmdb.org/t/p/original"
+import * as URLS from './constants';
 
 const CardListContainer = styled.div`
     display: flex;
@@ -23,7 +19,7 @@ function CardList(props) {
     const [page, setPage] = React.useState(1);
     React.useEffect(() => {
         const fetchData = async () => {
-            const result = await axios(TMDB_GET_MOVIES + "&page=" + page);
+            const result = await axios(URLS.TMDB_GET_MOVIES + "&page=" + page);
             console.log(result)
             setData(result.data);
         };
@@ -46,7 +42,7 @@ function CardList(props) {
 
                 {data.results.map(movie => (
                     <Link to={`/movie/${movie.id}`} key={movie.id}>
-                        <Card title={movie.title} overview={movie.overview} poster={POSTER_PREFIX + movie.poster_path} />
+                        <Card title={movie.title} overview={movie.overview} poster={URLS.POSTER_PREFIX + movie.poster_path} />
                         <Form personId={movie.id} />
                     </Link>
                 ))}

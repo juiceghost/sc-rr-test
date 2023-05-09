@@ -1,19 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link,
-  useRouteMatch,
-  useParams
 } from "react-router-dom";
-import { Rating } from 'react-simple-star-rating';
+
 
 import Form from './Form';
-import CardList, { POSTER_PREFIX } from './CardList';
-
+import CardList from './CardList';
+import MoviePage from './MoviePage';
 
 const MainContainer = styled.main`
   display: flex;
@@ -27,53 +24,7 @@ const StyledPara = styled.p`
   max-width: 20em;
 `;
 
-function Movie() {
-  const [data, setData] = React.useState(false);
-  // Object destructuring:
-  let { movieId } = useParams();
-  const TMDB_GET_DETAIL = `https://api.themoviedb.org/3/movie/${movieId}?api_key=d82f364f4fa13e9d2bc3e63a48f37d0c&language=en-US`;
-  console.log(POSTER_PREFIX)
 
-  React.useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios(TMDB_GET_DETAIL);
-      console.log(result)
-      setData(result.data);
-    };
-
-    fetchData();
-  }, []);
-
-
-  // Same result, no destructuring:
-  //let params = useParams();
-  //let movieId = params.movieId;
-  //console.log(params);
-  return data ? <>
-    <h1>{data.title}</h1>
-    <Rating initialValue={data.vote_average / 2} allowFraction />
-  </> : <h3>Loading</h3>;
-}
-
-function Movies() {
-  let match = useRouteMatch();
-  //console.log(match);
-
-  return (
-    <>
-      <h1>Movie</h1>
-      <Switch>
-        <Route path={`${match.path}/:movieId`}>
-          <Movie />
-        </Route>
-        <Route path={match.path}>
-          <h3>Go back and click a movie please.</h3>
-        </Route>
-      </Switch>
-    </>
-  );
-
-};
 
 function App() {
 
@@ -95,7 +46,7 @@ function App() {
         <Switch>
           <Route path="/movie">
             <Form />
-            <Movies />
+            <MoviePage />
 
           </Route>
           <Route path="/">
