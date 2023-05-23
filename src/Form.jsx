@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Rating } from 'react-simple-star-rating';
 
-function Form() {
+function Form(props) {
     const [movie, setMovie] = useState('');
     const [genre, setGenre] = useState('');
     const [ratingValue, setRatingValue] = useState(0) // https://codesandbox.io/s/react-simple-rating-ts-fzmpu?fontsize=14&hidenavigation=1&theme=dark
     // Select in react: https://www.robinwieruch.de/react-select/
 
+    //console.log(props)
     const genres = [
         {
             id: 80,
@@ -42,6 +43,9 @@ function Form() {
         console.log("You entered " + movie + "in the movie box")
         console.log("You entered " + genre + "in the genre box")
         evt.preventDefault()
+        // Do a call to the API
+        // hide the form meaning remove the form component from the tree
+        props.hideForm(genre)
     }
 
     return (
@@ -58,7 +62,7 @@ function Form() {
                     Genre
                     <select value={genre} onChange={handleGenreChange}>
                         <option value=""> - Please select a genre - </option>
-                        {genres.map(genre => (<option value={genre.id}>{genre.name}</option>))}
+                        {genres.map(genre => (<option key={genre.id} value={genre.id}>{genre.name}</option>))}
                         {/* <option value={33}>Thriller</option> */}
                     </select>
                 </label>

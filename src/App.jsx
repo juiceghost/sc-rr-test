@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import {
   BrowserRouter as Router,
@@ -27,7 +27,17 @@ const StyledPara = styled.p`
 
 
 function App() {
+  const [showForm, setShowForm] = useState(true);
 
+  function hideForm(genre) {
+    // this function shall hide the form
+    console.log("Hej från hideForm INUTI APP du angav genre " + genre)
+    setShowForm(false);
+  }
+
+  function displayForm() {
+    setShowForm(true);
+  }
   return (
     <Router>
       <MainContainer>
@@ -45,8 +55,8 @@ function App() {
         </ul>
         <Switch>
           <Route path="/movie">
-            <Form />
-            <MoviePage />
+            {showForm && <Form hideForm={hideForm} />}
+            <MoviePage displayForm={displayForm} />
 
           </Route>
           <Route path="/">

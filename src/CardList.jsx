@@ -20,7 +20,7 @@ function CardList(props) {
     React.useEffect(() => {
         const fetchData = async () => {
             const result = await axios(URLS.TMDB_GET_MOVIES + "&page=" + page);
-            console.log(result)
+            console.log(result.data)
             setData(result.data);
         };
 
@@ -39,7 +39,6 @@ function CardList(props) {
             <button onClick={nextPage}>NEXT PAGE</button>
             <button onClick={prevPage}>PREV PAGE</button>
             <CardListContainer>
-
                 {data.results.map(movie => (
                     <Link to={`/movie/${movie.id}`} key={movie.id}>
                         <Card title={movie.title} overview={movie.overview} poster={URLS.POSTER_PREFIX + movie.poster_path} />
